@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolyne's Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            overflow-x: hidden;
+            background: #0c1a2d;
+        }
+
+        /* Spirited Away Background */
+        .spirited-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                #1a3658 0%, 
+                #2c3e50 30%, 
+                #1a5276 60%, 
+                #154360 85%, 
+                #0c1a2d 100%);
+            z-index: -2;
+        }
+
+        /* Spirited Away Moon */
+        .spirited-moon {
+            position: fixed;
+            top: 60px;
+            right: 10%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #f9f3d5 0%, #e8e1c8 70%, #d4ca9f 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 80px rgba(249, 243, 213, 0.8);
+            z-index: -1;
+            animation: moon-glow 8s ease-in-out infinite;
+        }
+
+        @keyframes moon-glow {
+            0%, 100% { 
+                transform: translateY(0) scale(1); 
+                opacity: 0.9; 
+                box-shadow: 0 0 80px rgba(249, 243, 213, 0.8);
+            }
+            50% { 
+                transform: translateY(15px) scale(1.05); 
+                opacity: 1; 
+                box-shadow: 0 0 100px rgba(249, 243, 213, 0.9);
+            }
+        }
+
+        /* Chihiro (Main Character) */
+        .chihiro {
+            position: fixed;
+            bottom: 150px;
+            left: 15%;
+            width: 100px;
+            height: 180px;
+            z-index: -1;
+            animation: chihiro-float 15s ease-in-out infinite;
+        }
+
+        .chihiro-head {
+            width: 60px;
+            height: 60px;
+            background: #f5d0a9;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 20px;
+            border: 2px solid #d4a574;
+        }
+
+        .chihiro-hair {
+            width: 70px;
+            height: 40px;
+            background: #5d4037;
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            border-radius: 35px 35px 20px 20px;
+            clip-path: polygon(0% 100%, 10% 0%, 90% 0%, 100% 100%);
+        }
+
+        .chihiro-body {
+            width: 50px;
+            height: 80px;
+            background: #8e44ad;
+            position: absolute;
+            top: 60px;
+            left: 25px;
+            border-radius: 10px;
+        }
+
+        .chihiro-arms {
+            width: 80px;
+            height: 10px;
+            background: #8e44ad;
+            position: absolute;
+            top: 70px;
+            left: 10px;
+            border-radius: 5px;
+        }
+
+        .chihiro-legs {
+            width: 50px;
+            height: 40px;
+            background: #9b59b6;
+            position: absolute;
+            top: 140px;
+            left: 25px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        @keyframes chihiro-float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30px, -20px); }
+            50% { transform: translate(60px, 0); }
+            75% { transform: translate(30px, -30px); }
+        }
+
+        /* No-Face Character */
+        .no-face-character {
+            position: fixed;
+            bottom: 100px;
+            right: 20%;
+            width: 120px;
+            height: 150px;
+            z-index: -1;
+            animation: no-face-float 20s ease-in-out infinite;
+        }
+
+        .no-face-body {
+            width: 120px;
+            height: 120px;
+            background: #2c3e50;
+            border-radius: 60px;
+            position: absolute;
+            bottom: 30px;
+            border: 3px solid #34495e;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .no-face-mask {
+            width: 80px;
+            height: 60px;
+            background: #ecf0f1;
+            border-radius: 40px 40px 20px 20px;
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            overflow: hidden;
+        }
+
+        .no-face-eyes {
+            width: 50px;
+            height: 10px;
+            background: #2c3e50;
+            border-radius: 5px;
+            position: absolute;
+            top: 20px;
+            left: 15px;
+        }
+
+        .no-face-eyes::before,
+        .no-face-eyes::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #2c3e50;
+            border-radius: 50%;
+            top: -2px;
+        }
+
+        .no-face-eyes::before {
+            left: -8px;
+        }
+
+        .no-face-eyes::after {
+            right: -8px;
+        }
+
+        .no-face-mouth {
+            width: 20px;
+            height: 5px;
+            background: #2c3e50;
+            border-radius: 2px;
+            position: absolute;
+            bottom: 15px;
+            left: 30px;
+        }
+
+        @keyframes no-face-float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-40px, -25px); }
+            50% { transform: translate(-80px, 0); }
+            75% { transform: translate(-40px, -35px); }
+        }
+
+        /* Haku (Dragon Form) */
+        .haku-dragon {
+            position: fixed;
+            top: 200px;
+            left: 10%;
+            width: 300px;
+            height: 100px;
+            z-index: -1;
+            animation: haku-fly 30s linear infinite;
+        }
+
+        .haku-body {
+            width: 200px;
+            height: 30px;
+            background: linear-gradient(to right, #27ae60 0%, #2ecc71 100%);
+            border-radius: 15px;
+            position: absolute;
+            top: 35px;
+            left: 0;
+        }
+
+        .haku-head {
+            width: 40px;
+            height: 40px;
+            background: #27ae60;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            left: -20px;
+        }
+
+        .haku-horn {
+            width: 10px;
+            height: 20px;
+            background: #f39c12;
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            border-radius: 5px;
+        }
+
+        .haku-tail {
+            width: 100px;
+            height: 10px;
+            background: #27ae60;
+            position: absolute;
+            top: 45px;
+            right: -80px;
+            border-radius: 5px;
+            transform: rotate(10deg);
+        }
+
+        .haku-fin {
+            width: 20px;
+            height: 40px;
+            background: #27ae60;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            border-radius: 10px;
+            transform: rotate(45deg);
+        }
+
+        @keyframes haku-fly {
+            0% { transform: translateX(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(calc(100vw + 300px)); opacity: 0; }
+        }
+
+        /* Soot Sprites (Susuwatari) */
+        .soot-sprite {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: #2c3e50;
+            border-radius: 50%;
+            z-index: -1;
+            animation: soot-float 10s infinite ease-in-out;
+            box-shadow: 0 0 10px rgba(44, 62, 80, 0.5);
+        }
+
+        .soot-sprite::before,
+        .soot-sprite::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 50%;
+            top: 8px;
+        }
+
+        .soot-sprite::before {
+            left: 5px;
+        }
+
+        .soot-sprite::after {
+            right: 5px;
+        }
+
+        .soot-sprite:nth-child(1) {
+            top: 40%;
+            left: 25%;
+            animation-delay: 0s;
+        }
+
+        .soot-sprite:nth-child(2) {
+            top: 60%;
+            left: 35%;
+            animation-delay: -2s;
+            transform: scale(0.8);
+        }
+
+        .soot-sprite:nth-child(3) {
+            top: 30%;
+            left: 70%;
+            animation-delay: -4s;
+            transform: scale(0.9);
+        }
+
+        .soot-sprite:nth-child(4) {
+            top: 50%;
+            left: 85%;
+            animation-delay: -6s;
+            transform: scale(0.7);
+        }
+
+        .soot-sprite:nth-child(5) {
+            top: 70%;
+            left: 60%;
+            animation-delay: -8s;
+            transform: scale(0.85);
+        }
+
+        @keyframes soot-float {
+            0%, 100% { transform: translate(0, 0) scale(var(--scale, 1)); opacity: 0.7; }
+            25% { transform: translate(20px, -30px) scale(var(--scale, 1)); opacity: 1; }
+            50% { transform: translate(40px, -10px) scale(var(--scale, 1)); opacity: 0.7; }
+            75% { transform: translate(20px, -40px) scale(var(--scale, 1)); opacity: 0.9; }
+        }
+
+        /* River Spirit */
+        .river-spirit {
+            position: fixed;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, 
+                rgba(26, 188, 156, 0.4) 0%, 
+                rgba(22, 160, 133, 0.6) 40%, 
+                transparent 100%);
+            z-index: -1;
+            animation: river-flow 6s ease-in-out infinite;
+        }
+
+        .river-spirit::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 30%;
+            width: 100px;
+            height: 50px;
+            background: rgba(46, 204, 113, 0.3);
+            border-radius: 50px 50px 0 0;
+            animation: spirit-wave 4s ease-in-out infinite;
+        }
+
+        .river-spirit::after {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: 40%;
+            width: 80px;
+            height: 40px;
+            background: rgba(52, 152, 219, 0.3);
+            border-radius: 40px 40px 0 0;
+            animation: spirit-wave 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes river-flow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spirit-wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Spirited Away Sparkle Cursor */
+        .cursor-sparkle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.5));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.2s;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Rest of your existing CSS remains the same from login-container onward */
+        /* Login Container */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-box {
+            background: rgba(41, 41, 62, 0.95);
+            border: 3px solid rgba(52, 152, 219, 0.5);
+            border-radius: 25px;
+            padding: 50px 45px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            color: #ecf0f1;
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 400;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .login-box p {
+            text-align: center;
+            color: #bdc3c7;
+            margin-bottom: 35px;
+            font-size: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #ecf0f1;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 18px;
+            background: rgba(52, 73, 94, 0.8);
+            border: 2px solid rgba(52, 152, 219, 0.5);
+            border-radius: 12px;
+            font-size: 15px;
+            color: #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #3498DB;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.7);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #2980B9, #1F618D);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.7);
+        }
+
+        .error-message {
+            color: #E74C3C;
+            font-size: 13px;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #E74C3C;
+        }
+
+        /* Main Portfolio Content */
+        .portfolio-content {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation */
+        .nav-header {
+            background: rgba(41, 41, 62, 0.98);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid rgba(52, 152, 219, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-header h1 {
+            color: #ecf0f1;
+            font-size: 28px;
+            font-weight: 400;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #3498DB;
+            background: rgba(52, 152, 219, 0.2);
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+        }
+
+        .logout-btn {
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #2980B9, #1F618D);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.7);
+        }
+
+        /* Sections */
+        .section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 60px 40px;
+            background: rgba(41, 41, 62, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .section h2 {
+            color: #ecf0f1;
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 400;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #bdc3c7;
+            font-size: 18px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Home Section */
+        .home-content {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 5px solid #3498DB;
+            background: linear-gradient(135deg, rgba(52, 73, 94, 0.8) 0%, rgba(41, 128, 185, 0.6) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #ecf0f1;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .home-content h3 {
+            font-size: 32px;
+            color: #ecf0f1;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+        }
+
+        .home-content p {
+            font-size: 18px;
+            color: #bdc3c7;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Personal Info Section */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: rgba(52, 73, 94, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
+        }
+
+        .info-card h3 {
+            color: #ecf0f1;
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p, .info-card ul {
+            color: #bdc3c7;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: rgba(52, 73, 94, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
+        }
+
+        .skill-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .skill-card h4 {
+            color: #ecf0f1;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: rgba(52, 73, 94, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.7);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.3) 0%, rgba(41, 128, 185, 0.5) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #bdc3c7;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 190%;
+            height: 160%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            color: #ecf0f1;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .project-content p {
+            color: #bdc3c7;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Hobbies Section */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .hobby-card {
+            background: rgba(52, 73, 94, 0.8);
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: rotate(2deg) scale(1.05);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
+        }
+
+        .hobby-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .hobby-card h4 {
+            color: #ecf0f1;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .hobby-card p {
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .photo-item {
+            position: relative;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.3) 0%, rgba(41, 128, 185, 0.5) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #bdc3c7;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .photo-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(52, 152, 219, 0.5);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            background: rgba(52, 73, 94, 0.8);
+            color: #ecf0f1;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: linear-gradient(135deg, #2980B9, #1F618D);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chihiro,
+            .no-face-character {
+                transform: scale(0.7);
+            }
+            
+            .haku-dragon {
+                transform: scale(0.5);
+                top: 100px;
+            }
+            
+            .nav-header {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 40px 20px;
+                margin: 30px 20px;
+            }
+            
+            .section h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Spirited Away Background -->
+    <div class="spirited-background"></div>
+    <div class="spirited-moon"></div>
+    
+    <!-- Spirited Away Characters -->
+    <div class="chihiro"></div>
+    <div class="no-face-character"></div>
+    <div class="haku-dragon"></div>
+    
+    <!-- Soot Sprites -->
+    <div class="soot-sprite"></div>
+    <div class="soot-sprite"></div>
+    <div class="soot-sprite"></div>
+    <div class="soot-sprite"></div>
+    <div class="soot-sprite"></div>
+    
+    <!-- River Spirit -->
+    <div class="river-spirit"></div>
+
+    <!-- Login Section -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <h2>Welcome</h2>
+            <p>Private access only. Please authenticate to continue.</p>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="error-message" id="errorMessage">Invalid credentials. Please try again.</div>
+                <button type="submit" class="login-btn">Enter Spirit World</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Portfolio Content -->
+ <div class="portfolio-content" id="portfolio-content"></div>
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <h1>Rolyne's Portfolio</h1>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#personal-info">Personal Info</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#hobbies">Hobbies</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </nav>
+
+        <!-- Home Section -->
+          <section class="section" id="home">
+            <div class="home-content">
+                <div class="profile-photo">
+                   <wbr="1890" height="2480">
+                    <img src="https://img.sanishtech.com/u/96c14086be1d44c9bcb13e59ce862dcb.jpg" alt="Rolyne"> -->
+                    
+                </div>>
+                <h3>Hello, I'm Rolyne</h3>
+                <p>Welcome! I am a first-year student dedicated to learning through active creation and meaningful projects. This site serves as a portfolio of my developing work and a reflection of my academic and personal growth. Every project is a step in my growth, and I'm thrilled to share the process. I'd love to connect, so explore my work. Thank You!</p>
+            </div>
+        </section>
+
+        <!-- Personal Information Section -->
+        <section class="section" id="personal-info">
+            <h2>Personal Information</h2>
+            <p class="section-subtitle">Get to know me</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📚 Education</h3>
+                    <ul>
+                        <li><strong>Current:</strong> Caraga State University Cabadbaran City</li>
+                        <li><strong>Program:</strong> Bachelor of Science and Information Technology</li>
+                        <li><strong>Year:</strong> 1st year</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🎯 Career Goals</h3>
+                    <p>I am pursuing a career in software engineering with a core mission, to merge creative problem-solving with robust technology. Through my BSIT studies, I am building the foundation to design and develop intuitive, impactful software that genuinely improves how people live and work.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📲 Contacts</h3>
+                    <p><strong>Email:</strong> rolynecartoneros@gmail.com</p>
+                    <p><strong>Phone Number:</strong> 09124847562</p>
+                    <p><strong>Facebook:</strong> Rolyne Cartoneros</p>
+                    <p><strong>Instagram:</strong> @rhlxrlyn</p>
+                </div>
+                <div class="info-card">
+                    <h3>🌟 Core Values</h3>
+                    <p>My personal faith provides a foundation of integrity and perseverance, guiding me to pursue excellence in all my endeavors. I strive to live with purpose, serve others with compassion, and allow my principles to lead both my personal growth and professional contributions.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📍 Current Location</h3>
+                    <p><strong>Country:</strong> Philippines</p>
+                    <p><strong>Region:</strong> Agusan Del Norte</p>
+                    <p><strong>City:</strong> Cabadbaran City</p>
+                </div>
+                <div class="info-card">
+                    <h3>📍 Permanent adress</h3>
+                     <p><strong>Brgy:</strong> Lower Libas</p>
+                    <p><strong>Municipality:</strong>Tagana-an</p>
+                    <p><strong>Province:</strong> Surigao Del Norte</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2>Skills & Expertise</h2>
+            <p class="section-subtitle">What I bring to the table</p>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h4>Web Development</h4>
+                    <p>HTML, CSS, JavaScript, and responsive design (just the basics)</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h4>Creative Design</h4>
+                    <p>Designing with intention by mastering the application of color and narrative in visual communication.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤝</div>
+                    <h4>Communication</h4>
+                    <p>Teamwork, presentation skills, and collaboration</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h4>Organization</h4>
+                    <p>Project management, planning, task prioritization and time management</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <h2>My Projects</h2>
+            <p class="section-subtitle">Journeys through creation</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://img.sanishtech.com/u/2ebed88180093e81a1895efeb498ae91.png" alt="Project 1">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio Website</h3>
+                        <p>This project is a functional portfolio website that demonstrates front-end proficiency. It implements a user authentication system and provides a clean, responsive interface to highlight my projects and technical abilities.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://img.sanishtech.com/u/bcbe8a14c46d4241ef13530a7a585b4d.jpg" alt="Project 2">
+                    </div>
+                    <div class="project-content">
+                        <h3>School Project</h3>
+                        <p>This desktop/web application streamlines school administration by centralizing student, faculty, and course records. Key features include a user-friendly dashboard, complex search and filtering, automated report generation, and secure, role-based access control.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://img.sanishtech.com/u/797d365496dfe6152de9bef65a0e1722.jpg" alt="Project 3">
+                    </div>
+                    <div class="project-content">
+                        <h3>Creative Work</h3>
+                        <p>A digital storytelling platform where user decisions shape unique narratives. Combines classic story structures with interactive web design for a personalized, modern experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section class="section" id="hobbies">
+            <h2>Hobbies & Interests</h2>
+            <p class="section-subtitle">What I love to do in my free time</p>
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <div class="hobby-icon">📚</div>
+                    <h4>Reading</h4>
+                    <p>Exploring different genres and expanding knowledge through books</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🎨</div>
+                    <h4>Art & Design</h4>
+                    <p>Creating visual content and exploring creative expression</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🎵</div>
+                    <h4>Music</h4>
+                    <p>Listening to various music genres and discovering new artists</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">✈️</div>
+                    <h4>Travel</h4>
+                    <p>Exploring new places and environment and experiencing new things </p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">📸</div>
+                    <h4>Photography</h4>
+                    <p>Capturing moments and telling stories through images</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🎬</div>
+                    <h4>Watching</h4>
+                    <p>A deep appreciation for visual storytelling across film, television, and documentaries.</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">👩🏻‍🍳</div>
+                    <h4>Cooking</h4>
+                    <p>Experimenting with recipes and flavors to create delicious meals.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section class="section" id="gallery">
+            <h2>Photo Gallery</h2>
+            <p class="section-subtitle">Moments captured in time</p>
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/643b1acf3f8aabfb7a6de01e9572bb11.jpg" alt="Memory 1">
+                    <span class="photo-label">Creative Work</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/00e7aba4ff32eac914b7dbfcc688d195.jpg" alt="Memory 2">
+                    <span class="photo-label">Project Development</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/e1d19955f341a0484e6d52274a534c5d.jpg" alt="Memory 3">
+                    <span class="photo-label">Team Collaboration</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/9c5f3d0cfc058aa453e8a408829c1626.jpg" alt="Memory 4">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/68b0d1a84e8552dcfaeaf62d47eac261.jpg" alt="Memory 5">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/c916af4b56ba4c1e34e0a9b08f518056.jpg" alt="Memory 6">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/5de7eac0d1fffb940375ef4986d565dd.jpg" alt="Memory 7">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/349c7a8b0844c737085db7d6fe0c62d3.jpg" alt="Memory 8">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/8d3482ccc581c1f00419f2d457aa468d.jpg" alt="Memory 9">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/e3fc57d744e8937b6f7d2eade2dc40fb.jpg" alt="Memory 10">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/e3c695584a8b2c06d1a826b5bc006290.jpg" alt="Memory 11">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://img.sanishtech.com/u/10c93ddd2c74e0abf5d527cb59469a78.jpg" alt="Memory 12">
+                    <span class="photo-label">Learning Journey</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <p class="section-subtitle">Let's connect and collaborate</p>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        // Spirited Away Sparkle Cursor Effect
+        const cursorSparkles = [];
+        const maxSparkles = 15;
+
+        for (let i = 0; i < maxSparkles; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'cursor-sparkle';
+            document.body.appendChild(sparkle);
+            cursorSparkles.push({
+                element: sparkle,
+                x: 0,
+                y: 0,
+                delay: i * 0.03,
+                size: 8 - (i * 0.3)
+            });
+        }
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let isMoving = false;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            isMoving = true;
+            
+            setTimeout(() => {
+                isMoving = false;
+            }, 100);
+        });
+
+        function animateSparkles() {
+            cursorSparkles.forEach((sparkle, index) => {
+                const targetX = mouseX - (index * 3);
+                const targetY = mouseY - (index * 3);
+                
+                sparkle.x += (targetX - sparkle.x) * (0.2 - sparkle.delay);
+                sparkle.y += (targetY - sparkle.y) * (0.2 - sparkle.delay);
+                
+                sparkle.element.style.left = sparkle.x + 'px';
+                sparkle.element.style.top = sparkle.y + 'px';
+                sparkle.element.style.opacity = isMoving ? (1 - index * 0.06) : 0;
+                sparkle.element.style.transform = `scale(${sparkle.size / 8}) rotate(${index * 30}deg)`;
+            });
+            
+            requestAnimationFrame(animateSparkles);
+        }
+
+        animateSparkles();
+
+        // Login System
+        const loginForm = document.getElementById('loginForm');
+        const loginContainer = document.getElementById('loginContainer');
+        const portfolioContent = document.getElementById('portfolioContent');
+        const errorMessage = document.getElementById('errorMessage');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Login credentials
+        const credentials = {
+            username: 'rolynecartoneros@gmail.com',
+            password: 'rolyne_1108'
+        };
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.toLowerCase();
+            const password = document.getElementById('password').value;
+            
+            if (username === credentials.username && password === credentials.password) {
+                errorMessage.style.display = 'none';
+                loginContainer.style.display = 'none';
+                portfolioContent.style.display = 'block';
+                window.scrollTo(0, 0);
+                
+                // Add entrance animation
+                document.querySelectorAll('.section').forEach((section, index) => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(50px)';
+                    setTimeout(() => {
+                        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('password').value = '';
+                
+                // Shake animation for wrong credentials
+                loginBox.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    loginBox.style.animation = '';
+                }, 500);
+            }
+        });
+
+        // Add shake animation for wrong login
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        logoutBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to return to the human world?')) {
+                portfolioContent.style.display = 'none';
+                loginContainer.style.display = 'flex';
+                loginForm.reset();
+                errorMessage.style.display = 'none';
+                window.scrollTo(0, 0);
+            }
+        });
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            e.target.reset();
+        });
+
+        // Smooth Scrolling with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const navHeight = document.querySelector('.nav-header').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Character interactions
+        document.addEventListener('click', (e) => {
+            // Create ripple effect on click
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.background = 'radial-gradient(circle, rgba(52, 152, 219, 0.8), transparent)';
+            ripple.style.borderRadius = '50%';
+            ripple.style.left = e.clientX - 10 + 'px';
+            ripple.style.top = e.clientY - 10 + 'px';
+            ripple.style.zIndex = '9998';
+            ripple.style.pointerEvents = 'none';
+            document.body.appendChild(ripple);
+            
+            // Animate ripple
+            let size = 20;
+            const growRipple = () => {
+                size += 5;
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = e.clientX - size/2 + 'px';
+                ripple.style.top = e.clientY - size/2 + 'px';
+                ripple.style.opacity = 1 - (size - 20) / 100;
+                
+                if (size < 120) {
+                    requestAnimationFrame(growRipple);
+                } else {
+                    document.body.removeChild(ripple);
+                }
+            };
+            
+            requestAnimationFrame(growRipple);
+        });
+    </script>
+</body>
+</html>
